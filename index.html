@@ -30,14 +30,14 @@
                 </div>
         </section>   
         <div class="grad">
-            <img style="margin: 0 35%" src="imgs/grad.png">
+            <img style="margin: 5% 35%" src="imgs/grad.png">
             <img style="margin: 5% 50%;" src="imgs/unnamed.jpg">
         </div>
     </div>
     <section class="main">
             <h1 class="skills-header">Skills</h1>
             <div class="skills-icons">
-                <ul class="skills-list">
+                <ul class="skills-list" id="skills-list">
                     <li><i class="ci ci-django ci-4x"></i>Django</li>
                     <li><i class="ci ci-java ci-4x"></i>Java</li>
                     <li><i class="ci ci-python ci-4x"></i>Python</li>
@@ -67,4 +67,32 @@
         </div>
     </section>
 </body>
+<script>
+
+    const skillsList = document.getElementById('skills-list');
+    const skillsIcons = skillsList.getElementsByTagName('i')
+
+    for (const skill of skillsIcons) {
+        skill.addEventListener('mouseout', function(event) {
+            if (event.target.tagName == 'I') {
+                shrinkIcon(event.target);
+            }
+        });
+        skill.addEventListener('mouseenter', function(event) {
+            if (event.target.tagName == 'I') {
+                growIcon(event.target);
+            }
+        });
+    }
+
+    function growIcon(icon) { 
+        icon.className = "ci " + icon.className.substring(icon.className.indexOf("ci-"), icon.className.indexOf("ci-", icon.className.length - 5)) + "ci-5x"; 
+    }
+
+
+    function shrinkIcon(icon) { 
+        icon.className = "ci " + icon.className.substring(icon.className.indexOf("ci-"), icon.className.indexOf("ci-", icon.className.length - 5)) + "ci-4x"; 
+    }
+
+</script>
 </html>
