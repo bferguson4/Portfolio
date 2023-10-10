@@ -50,45 +50,23 @@ body, html {
 
 
 .grad {
-    margin-left: 15%;
-    margin-top: 1%;
     display: block;
-    width: 500px;
-    height: 650px;
+    width: 50%;
+    height: 80%;
 }
 
 .grad img {
     border: 2px solid black;
-    width: 300px;
-    height: 300px;
+    width: 40%;
+    height: 52%;
 }
 
-
-.arrow {
-    width: 100px;
-    margin-left: 45%;
-    margin-top: 10%;
-    outline-color: white;
-    opacity: 0;
-    transform: translateY(-20px);
-    animation: fadeArrowDown 2s ease-in-out infinite;
-}
-
-@keyframes fadeArrowDown {
-    0%, 100% {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    50% {
-        opacity: 0.8;
-        transform: translateY(0);
-    }
-}
 
 .icons {
-    width: 10%;
+    width: 100%;
     display: flex;
     margin-top: 1rem;
+    justify-content: center;
 }
 
 
@@ -101,7 +79,7 @@ body, html {
     text-decoration: none;
     color: black;
     height: 50px;
-    margin-left: 4rem;
+    margin: 0 5%;
     justify-content: center;
     align-items: center;
 }
@@ -148,28 +126,38 @@ p {
     text-align: center;
 }
 
+.projects {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 .projects-header {
     padding-top: 5%;
     font-weight: 400;
     text-align: center;
 }
 
-.project-links {
-    text-decoration: none;
-    color: black;
+
+.projects-list li {
     display: block;
     text-wrap: wrap;
     background-color: antiquewhite;
     border: 2px solid black;
-    border-radius: 10px; 
     width: 500px;
+    height: 20%;
+    font-size: 1rem
 }
 
-
-.project-links img {
+.projects-list img {
+    width: 100%;
     border-bottom: 2px solid black;
-    width: 500px;
-    height: 350px;
+}
+
+.projects-list a {
+    text-decoration: none;
+    color: black;
 }
 
 
@@ -190,7 +178,7 @@ ul {
     text-align: center;
 }
 
-.skills-list li i {
+.skills-list i {
     display: block;
 }
 
@@ -201,15 +189,14 @@ ul {
     width: 70%;
 }
 
-@media (max-width: 1300px) {
-    .link {
-        margin-left: 0px;
-    }
-}
 
 @media (max-width: 1230px) {
     .grad {
         display: none;
+    }
+    .about-block {
+        width: 50%;
+        margin: 0 auto;
     }
 }
 
@@ -217,5 +204,11 @@ ul {
 @media (max-width: 900px) {
     .icons a small {
         display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .projects-list li {
+        width: 300px
     }
 }
