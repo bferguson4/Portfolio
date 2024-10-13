@@ -38,7 +38,7 @@
         </div>
     </div>
     <section class="main">
-            <h1 class="skills-header">Skills</h1>
+            <h1 class="header">Skills</h1>
             <div class="skills-icons">
                 <ul class="skills-list" id="skills-list">
                     <li><i class="ci ci-django ci-4x"></i>Django</li>
@@ -50,46 +50,19 @@
                     <li><i class="ci ci-csharp ci-4x"></i>C#</li>
                 </ul>
             </div>
-        <h1 class="projects-header">Projects</h1>
+        <h1 class="header">Projects</h1>
         <div class="projects">
-            <ul class="projects-list">
-                <li>
-                    <a href="https://github.com/bferguson4/Jakal">
-                        <img  src="imgs/jakalpng.png">
-                        A web-application created with Django inspired by Wordle for guessing a random Super Smash Bros. Ultimate professional player.
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/bferguson4/BattleSalvo">
-                        <img src="imgs/BattleSalvo.png">
-                        A GUI using Java and JavaFX to allow a user to challenge an AI
-                        in a game similar to BattleShip.
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/bferguson4/DATA">
-                        <img src="imgs/DATA.jpg">
-                        A data analysis on recent NBA seasons with an interface for placing bets about basketball players, teams, and statistics.
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/BBavoso/Symphony-Sprint">
-                        <img src="imgs/S7.PNG">
-                        A candy-themed rhythm game that involves controlling a character to hit candy that matches the beat of the music.
-                    </a>
-                </li>
-                <li>
-                    <a href="https://github.com/bferguson4/Study">
-                        <img src="imgs/Study.png">
-                        A study tool website created with Django that allows the user to create and practice sets of flashcards.
-                    </a>
-                </li>
-            </ul>
+            <button id="prev"><img src="imgs/prev_arrow.png"></button>
+            <div class="neighbors" id="previousItem"></div>
+            <div class="active" id="currentItem"></div>
+            <div class="neighbors" id="nextItem"></div>
+            <button id="next"><img src="imgs/next_arrow.png"></button>
         </div>
     </section>
 </body>
 <script>
 
+    // Hovering Skills
     const skillsList = document.getElementById('skills-list');
     const skillsIcons = skillsList.getElementsByTagName('i')
 
@@ -105,15 +78,72 @@
             }
         });
     }
-
     function growIcon(icon) { 
         icon.className = "ci " + icon.className.substring(icon.className.indexOf("ci-"), icon.className.indexOf("ci-", icon.className.length - 5)) + "ci-5x"; 
     }
-
-
     function shrinkIcon(icon) { 
         icon.className = "ci " + icon.className.substring(icon.className.indexOf("ci-"), icon.className.indexOf("ci-", icon.className.length - 5)) + "ci-4x"; 
     }
+
+
+    // Shuffling Projects
+
+    const items = [
+            { src: 'imgs/jakalpng.png', link: 'https://github.com/bferguson4/Jakal',
+                desc: 'A web-application created with Django inspired by Wordle for guessing a random Super Smash Bros. Ultimate professional player.'
+            },
+            { src: 'imgs/BattleSalvo.png', link: 'https://github.com/bferguson4/BattleSalvo',
+                desc: ' A GUI using Java and JavaFX to allow a user to challenge an AI in a game similar to BattleShip.'
+            },
+            { src: 'imgs/DATA.jpg', link: 'https://github.com/bferguson4/DATA', 
+                desc: 'A data analysis on recent NBA seasons with an interface for placing bets about basketball players, teams, and statistics.'
+            },
+            { src: 'imgs/S7.PNG', link: 'https://github.com/BBavoso/Symphony-Sprint', 
+                desc: 'A candy-themed rhythm game that involves controlling a character to hit candy that matches the beat of the music.'
+            },
+            { src: 'imgs/Study.png', link: 'https://github.com/bferguson4/Study', 
+                desc: 'A study tool website created with Django that allows the user to create and practice sets of flashcards.'
+            }
+    ];
+    let currentIndex = 0;
+
+    function updateActiveItem() {
+        const prevIndex = (currentIndex - 1 + items.length) % items.length;
+        const nextIndex = (currentIndex + 1) % items.length;
+            
+            // Update previous item
+        document.getElementById('previousItem').innerHTML = `
+                
+                    <img src="${items[prevIndex].src}" alt="Previous Item">
+             
+        `;
+            // Update current item
+        document.getElementById('currentItem').innerHTML = `
+                <a href="${items[currentIndex].link}" target="_blank">
+                    <img src="${items[currentIndex].src}" alt="Current Item">
+                    ${items[currentIndex].desc}
+                </a>
+                
+        `;
+            // Update next item
+        document.getElementById('nextItem').innerHTML = `
+               
+                    <img src="${items[nextIndex].src}" alt="Next Item">
+               
+        `;
+    }
+
+    document.getElementById('next').addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length; 
+        updateActiveItem();
+    });
+
+    document.getElementById('prev').addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        updateActiveItem();
+    });
+
+    updateActiveItem()
 
 </script>
 </html>
